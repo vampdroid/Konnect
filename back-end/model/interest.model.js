@@ -2,11 +2,11 @@ const mongoose = require('mongoose')
 
 const interestSchema = new mongoose.Schema({
     interest_title:{
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         required: true,
     },
     interest_description:{
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         required: true,
     },
 })
