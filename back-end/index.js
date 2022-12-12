@@ -10,8 +10,9 @@ var path = require('path');
 const usercrud = require('./data_access/user.crud') 
 const interestcrud = require('./data_access/interest.crud')
 
-app.use(cors())
-
+// app.use(cors())
+// app.use(bodyParser.json());
+app.use(cors());
 dotenv.config()
 // const mongoDB = "mongodb://127.0.0.1/my_database";
 mongoose.connect('mongodb+srv://konnect:konnect123@cluster0.mibg0ql.mongodb.net/?retryWrites=true&w=majority')
@@ -25,6 +26,7 @@ db.once("open", function () {
   console.log("Connected successfully");
 });
 app.get('/', async (req, res) => {   
+  console.log("ok")
     //Testing DATA ACCESS files    
     // res.sendFile('index.html', {root: __dirname});   
     // usercrud.createUser("Jash","IO","jashio@gmail.com","user","pa")
@@ -40,6 +42,13 @@ app.get('/', async (req, res) => {
     // console.log(u)
     // res.send("Hello World "+u)  
 });
+
+const userRouter = require('./routes/user.route');
+app.use('/users',userRouter);
+
+const interestRouter = require('./routes/interest.route');
+app.use('/interests',interestRouter);
+
 
 app.listen(port, () => {            //server starts listening for any attempts from a client to connect at port: {port}
     console.log(`Now listening on port ${port}`); 

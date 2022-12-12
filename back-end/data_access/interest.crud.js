@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Interest = require('../model/interest.model')
 
 //Create
-const createInterest = (title,description) =>
+const createInterest = async (title,description) =>
 {
     var status = ""
     const new_interest = new Interest({
@@ -10,18 +10,20 @@ const createInterest = (title,description) =>
         interest_description:description
     })
 
-    new_interest.save()
-    .then((obj)=> console.log(obj+" object created"))
-    .catch((err)=> console.log(err));
+    var obj = await new_interest.save()
+    return obj
+    // .then((obj)=> { 
+    //     console.log("objectttt"+obj)
+    //     return obj;
+    // })
+    // .catch((err)=> console.log(err));
     // return status;
 }
 
 //Delete
-const deleteInterest = (id) =>
+const deleteInterest = async (id) =>
 {
-    User.deleteOne({_id:id})
-    .then((obj)=> console.log(obj+" object with"+id+" deleted"))
-    .catch((err)=> console.log(err));
+    return await Interest.deleteOne({_id:id})
     // return status;
 }
 
