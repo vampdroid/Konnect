@@ -1,7 +1,12 @@
 const mongoose = require('mongoose')
 
 const requestSchema = new mongoose.Schema({
-    user_id:{
+    sender:{
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref:'user'
+    },
+    receiver:{
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref:'user'

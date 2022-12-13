@@ -60,6 +60,16 @@ router.get("/get-user-detail/:id",(req,res,next)=>{
 })
 
 
+router.post('/remove-connection',async(req,res,next) =>
+{
+    var user_removing = req.body.user_removing
+    var user_to_remove = req.body.user_to_remove
+
+    UserCRUD.removeConnection(user_removing,user_to_remove)
+    .then((obj)=>res.status(200))
+    .catch((err)=> console.log("err"))
+})
+
 router.post("/login",async (req,res,next)=>{
     console.log("Request Received")
     var email = req.body.email;
@@ -101,8 +111,8 @@ router.get("/delete-user/:id",(req,res,next)=>{
     var id = req.params.id;
     UserCRUD.deleteUser(id)
     .then((obj)=>{
-        console.log("Deleted interest by ID"+obj);
-        res.send(obj)
+        console.log("Deleted interest by ID");
+        res.status(200)
     })
     .catch((err)=> console.log(err))
 })
