@@ -45,6 +45,19 @@ const userSchema = new mongoose.Schema({
     last_accessed_on: {
     type: Date
   },
+  connections:[
+    {
+      user:{
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref:'user'
+      },
+      status:{
+        type:String,
+        required:true
+      }
+    }
+  ]
  }, {
     timestamps: true,
 });
