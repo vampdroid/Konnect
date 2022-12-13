@@ -49,6 +49,11 @@ app.use('/users',userRouter);
 const interestRouter = require('./routes/interest.route');
 app.use('/interests',interestRouter);
 
+// const requestRouter = require('./routes/request.route');
+// app.use('/requests',requestRouter);
+
+const UserInterestRouter = require('./routes/user_interest.route');
+app.use('/user-interests',UserInterestRouter);
 
 app.listen(port, () => {            //server starts listening for any attempts from a client to connect at port: {port}
     console.log(`Now listening on port ${port}`); 
